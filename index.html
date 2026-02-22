@@ -9,13 +9,13 @@
 <body>
   <header class="topbar">
     <div class="wrap">
-      <a class="brand" href="#/">
+      <div class="brand">
         <img class="logo" alt="Logo" src="https://yata-apix-5853fa1e-9d2c-4052-91c3-fdf649a031f7.s3-object.locaweb.com.br/05a979d398c74e18b5df34f6e4ef33db.png">
         <div>
           <h1>Louvores</h1>
-          <p class="muted">Adorações & Celebrações</p>
+          <p class="muted">Clique em uma música para ver Letra/Cifra/YouTube</p>
         </div>
-      </a>
+      </div>
 
       <div class="actions">
         <button class="btn" id="btnTheme" type="button" title="Alternar tema">🌙</button>
@@ -24,78 +24,78 @@
   </header>
 
   <main class="wrap">
-    <!-- VIEW: LISTA -->
-    <section id="viewList" class="view">
-      <section class="panel">
-        <label class="field">
-          <span>Buscar</span>
-          <input id="q" type="search" placeholder="Buscar louvor ou cantor..." autocomplete="off" />
-        </label>
+    <section class="panel">
+      <label class="field">
+        <span>Buscar</span>
+        <input id="q" type="search" placeholder="Buscar louvor ou cantor..." autocomplete="off" />
+      </label>
 
-        <label class="field">
-          <span>Categoria</span>
-          <select id="cat">
-            <option value="all">Todas</option>
-            <option value="adoracao">Adorações</option>
-            <option value="celebracao">Celebrações</option>
-          </select>
-        </label>
+      <label class="field">
+        <span>Categoria</span>
+        <select id="cat">
+          <option value="all">Todas</option>
+          <option value="adoracao">Adorações</option>
+          <option value="celebracao">Celebrações</option>
+        </select>
+      </label>
 
-        <label class="field">
-          <span>Ordenar</span>
-          <select id="sort">
-            <option value="az">A–Z</option>
-            <option value="cat">Categoria</option>
-          </select>
-        </label>
-      </section>
-
-      <section class="grid" id="list" aria-live="polite"></section>
+      <label class="field">
+        <span>Ordenar</span>
+        <select id="sort">
+          <option value="az">A–Z</option>
+          <option value="cat">Categoria</option>
+        </select>
+      </label>
     </section>
 
-    <!-- VIEW: LETRA (DETALHE) -->
-    <section id="viewSong" class="view" hidden>
-      <button class="back" id="btnBack" type="button">← Voltar</button>
+    <section class="layout">
+      <!-- LISTA SEMPRE VISÍVEL -->
+      <section class="left">
+        <div class="sectionTitle">
+          <strong>Lista</strong>
+          <span class="pill" id="count">0</span>
+        </div>
+        <div class="grid" id="list" aria-live="polite"></div>
+      </section>
 
-      <section class="songCard">
-        <div class="songHead">
-          <div>
-            <h2 id="songTitle">—</h2>
-            <p class="muted" id="songArtist">—</p>
-            <p class="tag" id="songCat">—</p>
+      <!-- DETALHE -->
+      <section class="right" id="detail">
+        <div class="detailCard">
+          <div class="detailHead">
+            <div>
+              <h2 id="songTitle">Selecione um louvor</h2>
+              <p class="muted" id="songArtist">—</p>
+              <p class="tag" id="songCat">—</p>
+            </div>
+
+            <div class="detailActions">
+              <a class="iconBtn disabled" id="btnLyrics" target="_blank" rel="noopener noreferrer" title="Abrir letra">📝 Letra</a>
+              <a class="iconBtn disabled" id="btnCifra" target="_blank" rel="noopener noreferrer" title="Abrir cifra">🎸 Cifra</a>
+              <a class="iconBtn disabled" id="btnYT" target="_blank" rel="noopener noreferrer" title="Abrir no YouTube">▶️ YouTube</a>
+            </div>
           </div>
 
-          <div class="songActions">
-            <a class="iconBtn" id="btnLyrics" target="_blank" rel="noopener noreferrer" title="Abrir letra">📝 Letra</a>
-            <a class="iconBtn" id="btnCifra" target="_blank" rel="noopener noreferrer" title="Abrir cifra">🎸 Cifra</a>
-            <a class="iconBtn" id="btnYT" target="_blank" rel="noopener noreferrer" title="Abrir no YouTube">▶️ YouTube</a>
+          <div class="noteBox">
+            <p class="muted">
+              Letra e cifra abrem em outra aba (sites normalmente bloqueiam exibição direta).
+              Se você colar o link do YouTube aqui, o vídeo toca embutido.
+            </p>
           </div>
-        </div>
 
-        <div class="noteBox">
-          <p class="muted">
-            A letra abre em outra aba (sites de letra normalmente bloqueiam exibição direta por segurança/termos).
-            Se você cadastrar o link do YouTube para essa música, ela toca aqui embaixo.
-          </p>
-        </div>
-
-        <div class="playerWrap" id="playerWrap" hidden>
-          <div class="player" aria-label="Player do YouTube">
-            <iframe id="ytFrame" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <div class="playerWrap" id="playerWrap" hidden>
+            <div class="player">
+              <iframe id="ytFrame" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
           </div>
-        </div>
 
-        <div class="editWrap">
-          <details>
-            <summary>Opcional: cadastrar link do YouTube para tocar embutido</summary>
+          <details class="ytEditor">
+            <summary>Opcional: cadastrar link do YouTube para tocar aqui</summary>
             <div class="editRow">
-              <input id="ytInput" placeholder="Cole aqui o link do YouTube (ex.: https://www.youtube.com/watch?v=...)" />
+              <input id="ytInput" placeholder="Cole aqui o link do YouTube (https://www.youtube.com/watch?v=...)" />
               <button class="btn primary" id="btnSaveYT" type="button">Salvar</button>
               <button class="btn" id="btnClearYT" type="button">Remover</button>
             </div>
-            <p class="muted small">
-              Isso salva só no seu navegador (localStorage). Não precisa de login.
-            </p>
+            <p class="muted small">Salva no seu navegador (localStorage).</p>
           </details>
         </div>
       </section>
