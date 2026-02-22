@@ -69,43 +69,34 @@
             </div>
 
             <div class="detailActions">
-              <a class="iconBtn disabled" id="btnLyricsSource" target="_blank" rel="noopener noreferrer">📝 Letras (fonte)</a>
+              <button class="iconBtn disabled" id="btnShowLyrics" type="button">📝 Ver letra aqui</button>
               <a class="iconBtn disabled" id="btnCifra" target="_blank" rel="noopener noreferrer">🎸 Cifra</a>
               <a class="iconBtn disabled" id="btnYT" target="_blank" rel="noopener noreferrer">▶️ YouTube</a>
             </div>
           </div>
 
-          <!-- LETRA EMBUTIDA -->
+          <!-- LETRA EMBUTIDA (TENTA) + FALLBACK -->
           <section class="lyricsBox">
             <div class="lyricsHeader">
-              <strong>Letra</strong>
-              <span class="pill" id="lyricsStatus">—</span>
+              <strong>Letra (Letras.mus.br)</strong>
+              <a class="miniLink disabled" id="btnOpenLyricsSite" target="_blank" rel="noopener noreferrer">Conferir no site</a>
             </div>
 
-            <div id="lyricsEmpty" class="muted small">
-              Selecione um louvor para ver a letra aqui.
+            <div class="lyricsHint muted small" id="lyricsHint">
+              Clique em <b>“Ver letra aqui”</b>. Se o Letras bloquear a exibição, use <b>“Conferir no site”</b>.
             </div>
 
-            <pre id="lyricsText" class="lyricsText" hidden></pre>
+            <div class="lyricsWarn" id="lyricsWarn" hidden>
+              Não foi possível exibir a letra aqui (o site bloqueou a incorporação).
+              Use o botão <b>“Conferir no site”</b>.
+            </div>
 
-            <!-- Editor simples (pra você cadastrar letras aos poucos) -->
-            <details class="lyricsEditor">
-              <summary>Administrar letra (cadastrar/editar)</summary>
-              <div class="editCol">
-                <textarea id="lyricsInput" placeholder="Cole a letra aqui..."></textarea>
-                <div class="editRow">
-                  <button class="btn primary" id="btnSaveLyrics" type="button">Salvar letra neste navegador</button>
-                  <button class="btn" id="btnClearLyrics" type="button">Remover letra salva</button>
-                  <button class="btn" id="btnExportLyrics" type="button">Exportar JSON</button>
-                </div>
-                <p class="muted small">
-                  Isso salva no seu navegador (localStorage). Depois você pode exportar e colocar no <code>lyrics.js</code>.
-                </p>
-              </div>
-            </details>
+            <div class="lyricsFrameWrap" id="lyricsFrameWrap" hidden>
+              <iframe id="lyricsFrame" loading="lazy"></iframe>
+            </div>
           </section>
 
-          <!-- YOUTUBE EMBUTIDO -->
+          <!-- YOUTUBE EMBUTIDO (OPCIONAL) -->
           <details class="ytEditor">
             <summary>Opcional: cadastrar link do YouTube para tocar aqui</summary>
             <div class="editRow">
@@ -113,11 +104,14 @@
               <button class="btn primary" id="btnSaveYT" type="button">Salvar</button>
               <button class="btn" id="btnClearYT" type="button">Remover</button>
             </div>
+
             <div class="playerWrap" id="playerWrap" hidden>
               <div class="player">
                 <iframe id="ytFrame" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
             </div>
+
+            <p class="muted small">O link fica salvo só no seu navegador (localStorage).</p>
           </details>
 
         </div>
@@ -125,7 +119,6 @@
     </section>
   </main>
 
-  <script src="lyrics.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
