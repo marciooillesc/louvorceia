@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Louvores</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#/">
+        <img class="logo" alt="Logo" src="https://yata-apix-5853fa1e-9d2c-4052-91c3-fdf649a031f7.s3-object.locaweb.com.br/05a979d398c74e18b5df34f6e4ef33db.png">
+        <div>
+          <h1>Louvores</h1>
+          <p class="muted">Adorações & Celebrações</p>
+        </div>
+      </a>
+
+      <div class="actions">
+        <button class="btn" id="btnTheme" type="button" title="Alternar tema">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- VIEW: LISTA -->
+    <section id="viewList" class="view">
+      <section class="panel">
+        <label class="field">
+          <span>Buscar</span>
+          <input id="q" type="search" placeholder="Buscar louvor ou cantor..." autocomplete="off" />
+        </label>
+
+        <label class="field">
+          <span>Categoria</span>
+          <select id="cat">
+            <option value="all">Todas</option>
+            <option value="adoracao">Adorações</option>
+            <option value="celebracao">Celebrações</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Ordenar</span>
+          <select id="sort">
+            <option value="az">A–Z</option>
+            <option value="cat">Categoria</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="grid" id="list" aria-live="polite"></section>
+    </section>
+
+    <!-- VIEW: LETRA (DETALHE) -->
+    <section id="viewSong" class="view" hidden>
+      <button class="back" id="btnBack" type="button">← Voltar</button>
+
+      <section class="songCard">
+        <div class="songHead">
+          <div>
+            <h2 id="songTitle">—</h2>
+            <p class="muted" id="songArtist">—</p>
+            <p class="tag" id="songCat">—</p>
+          </div>
+
+          <div class="songActions">
+            <a class="iconBtn" id="btnLyrics" target="_blank" rel="noopener noreferrer" title="Abrir letra">📝 Letra</a>
+            <a class="iconBtn" id="btnCifra" target="_blank" rel="noopener noreferrer" title="Abrir cifra">🎸 Cifra</a>
+            <a class="iconBtn" id="btnYT" target="_blank" rel="noopener noreferrer" title="Abrir no YouTube">▶️ YouTube</a>
+          </div>
+        </div>
+
+        <div class="noteBox">
+          <p class="muted">
+            A letra abre em outra aba (sites de letra normalmente bloqueiam exibição direta por segurança/termos).
+            Se você cadastrar o link do YouTube para essa música, ela toca aqui embaixo.
+          </p>
+        </div>
+
+        <div class="playerWrap" id="playerWrap" hidden>
+          <div class="player" aria-label="Player do YouTube">
+            <iframe id="ytFrame" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="editWrap">
+          <details>
+            <summary>Opcional: cadastrar link do YouTube para tocar embutido</summary>
+            <div class="editRow">
+              <input id="ytInput" placeholder="Cole aqui o link do YouTube (ex.: https://www.youtube.com/watch?v=...)" />
+              <button class="btn primary" id="btnSaveYT" type="button">Salvar</button>
+              <button class="btn" id="btnClearYT" type="button">Remover</button>
+            </div>
+            <p class="muted small">
+              Isso salva só no seu navegador (localStorage). Não precisa de login.
+            </p>
+          </details>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
