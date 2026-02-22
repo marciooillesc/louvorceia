@@ -8,7 +8,6 @@
   --shadow: 0 12px 30px rgba(0,0,0,.30);
   --radius: 18px;
 }
-
 :root.light{
   --bg:#f6f7fb;
   --card:#ffffff;
@@ -18,7 +17,6 @@
   --primary:#16a34a;
   --shadow: 0 12px 28px rgba(2,6,23,.10);
 }
-
 *{ box-sizing:border-box; }
 body{
   margin:0;
@@ -27,7 +25,6 @@ body{
               var(--bg);
   color: var(--text);
 }
-
 .wrap{ width:min(1200px, 92vw); margin:0 auto; }
 
 .topbar{
@@ -37,31 +34,23 @@ body{
   border-bottom: 1px solid var(--border);
 }
 .topbar .wrap{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 12px;
-  padding: 14px 0;
+  display:flex; align-items:center; justify-content:space-between;
+  gap: 12px; padding: 14px 0;
 }
-
 .brand{ display:flex; align-items:center; gap: 12px; }
 .logo{
-  width:44px; height:44px;
-  object-fit: contain;
-  border-radius: 14px;
-  border: 1px solid var(--border);
+  width:44px; height:44px; object-fit: contain;
+  border-radius: 14px; border: 1px solid var(--border);
   background: color-mix(in oklab, var(--card) 80%, transparent);
-  padding: 6px;
-  box-shadow: var(--shadow);
+  padding: 6px; box-shadow: var(--shadow);
 }
 h1{ margin:0; font-size: 18px; }
 .muted{ margin:2px 0 0; color: var(--muted); font-size: 13px; }
 .small{ font-size: 12px; }
-
 .actions{ display:flex; gap: 10px; }
+
 .btn{
-  padding: 10px 12px;
-  border-radius: 14px;
+  padding: 10px 12px; border-radius: 14px;
   border: 1px solid var(--border);
   background: color-mix(in oklab, var(--card) 80%, transparent);
   color: var(--text);
@@ -74,23 +63,18 @@ h1{ margin:0; font-size: 18px; }
 }
 
 .panel{
-  margin: 16px 0 14px;
-  padding: 14px;
-  background: var(--card);
-  border: 1px solid var(--border);
+  margin: 16px 0 14px; padding: 14px;
+  background: var(--card); border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   display:grid;
   grid-template-columns: 1.4fr .7fr .7fr;
   gap: 12px;
 }
-
 .field{ display:flex; flex-direction:column; gap: 8px; }
 .field span{ font-size: 13px; color: var(--muted); }
-
 input, select{
-  padding: 11px 12px;
-  border-radius: 14px;
+  padding: 11px 12px; border-radius: 14px;
   border: 1px solid var(--border);
   background: color-mix(in oklab, var(--bg) 28%, var(--card));
   color: var(--text);
@@ -108,13 +92,7 @@ input:focus, select:focus{
   padding-bottom: 40px;
 }
 
-.sectionTitle{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom: 10px;
-}
-
+.sectionTitle{ display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; }
 .pill{
   padding: 8px 10px;
   border-radius: 999px;
@@ -124,18 +102,15 @@ input:focus, select:focus{
 }
 
 .left{
-  /* lista sempre visível com scroll */
   max-height: calc(100vh - 220px);
   overflow: auto;
   padding-right: 6px;
 }
-
 .grid{
   display:grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 12px;
 }
-
 .card{
   padding: 14px;
   border-radius: var(--radius);
@@ -153,7 +128,6 @@ input:focus, select:focus{
   outline: 2px solid color-mix(in oklab, var(--primary) 55%, transparent);
   box-shadow: 0 0 0 5px color-mix(in oklab, var(--primary) 18%, transparent), var(--shadow);
 }
-
 .card h3{ margin:0; font-size: 15px; line-height: 1.2; }
 .card .artist{ color: var(--muted); font-size: 13px; }
 .tag{
@@ -175,7 +149,6 @@ input:focus, select:focus{
   position: sticky;
   top: 86px;
 }
-
 .detailHead{
   display:flex;
   align-items:flex-start;
@@ -183,7 +156,6 @@ input:focus, select:focus{
   gap: 12px;
   flex-wrap: wrap;
 }
-
 .detailHead h2{ margin:0; font-size: 20px; }
 .detailActions{ display:flex; gap: 10px; flex-wrap: wrap; }
 
@@ -202,14 +174,53 @@ input:focus, select:focus{
 .iconBtn:hover{ filter: brightness(1.06); }
 .iconBtn.disabled{ opacity: .45; pointer-events:none; }
 
-.noteBox{
+/* LETRA */
+.lyricsBox{
   margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow:hidden;
+  background: color-mix(in oklab, var(--bg) 18%, var(--card));
+}
+.lyricsHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.lyricsText{
+  margin:0;
   padding: 12px;
+  max-height: 48vh;
+  overflow:auto;
+  white-space: pre-wrap;
+  line-height: 1.45;
+  font-size: 14px;
+}
+.lyricsEditor{ padding: 10px 12px; }
+.editCol{ margin-top: 10px; display:flex; flex-direction:column; gap: 10px; }
+textarea{
+  width:100%;
+  min-height: 160px;
+  padding: 11px 12px;
   border-radius: 14px;
-  border: 1px dashed var(--border);
-  background: color-mix(in oklab, var(--bg) 22%, var(--card));
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg) 28%, var(--card));
+  color: var(--text);
+  outline: none;
+  resize: vertical;
+}
+.editRow{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
+/* YouTube */
+.ytEditor{ margin-top: 12px; }
+details summary{ cursor:pointer; color: var(--muted); }
 .playerWrap{ margin-top: 12px; }
 .player{
   border-radius: 16px;
@@ -219,11 +230,6 @@ input:focus, select:focus{
   background: #000;
 }
 .player iframe{ width:100%; height:100%; border:0; display:block; }
-
-.ytEditor{ margin-top: 12px; }
-details summary{ cursor:pointer; color: var(--muted); }
-.editRow{ margin-top: 10px; display:flex; gap: 10px; flex-wrap: wrap; }
-.editRow input{ flex: 1; min-width: 260px; }
 
 @media (max-width: 980px){
   .panel{ grid-template-columns: 1fr; }
